@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>akclown</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.7.2/axios.js"></script>
+  </head>
+  <body>
+    <h1>域名为akclown.com</h1>
+    <button id="hello">打招呼</button>
+    <button id="setCookie">设置cookie</button>
+    <button id="getCookie">获取cookie</button>
+    <button id="setSession">设置session</button>
+    <button id="getSession">获取session</button>
+    <button id="setLocalStorage">设置localStorage</button>
+    <button id="getLocalStorage">获取localStorage</button>
+    <button id="setSessionStorage">设置sessionStorage</button>
+    <button id="getSessionStorage">获取sessionStorage</button>
+    <script>
+      (async function () {
+        document
+          .getElementById('hello')
+          .addEventListener('click', async function () {
+            const res = await axios.get('https://api.ak.com:3000/hello', {
+              withCredentials: true,
+            });
+            console.log('hello: ', res);
+          });
+
+        document
+          .getElementById('setCookie')
+          .addEventListener('click', async function () {
+            const res = await axios.post(
+              'https://www.akclown.com:3000/set-other-cookie',
+              undefined,
+              {
+                withCredentials: true,
+              },
+            );
+            console.log('setCookie: ', res);
+          });
+
+        document
+          .getElementById('getCookie')
+          .addEventListener('click', async function () {
+            const res = await axios.get(
+              'https://www.akclown.com:3000/get-cookie',
+              {
+                withCredentials: true,
+              },
+            );
+            console.log('getCookie: ', res);
+          });
+
+        document
+          .getElementById('setSession')
+          .addEventListener('click', async function () {
+            const res = await axios.get(
+              'https://www.akclown.com:3000/set-session',
+              {
+                withCredentials: true,
+              },
+            );
+          });
+
+        document
+          .getElementById('getSession')
+          .addEventListener('click', async function () {
+            const res = await axios.get(
+              'https://www.akclown.com:3000/get-session',
+              {
+                withCredentials: true,
+              },
+            );
+            console.log('hello: ', res);
+          });
+        document
+          .getElementById('setLocalStorage')
+          .addEventListener('click', async function () {
+            localStorage.setItem('www.akclown.com', 'www.akclown.com');
+          });
+
+        document
+          .getElementById('getLocalStorage')
+          .addEventListener('click', async function () {
+            console.log('api.ak.com: ', localStorage.getItem('api.ak.com'));
+            console.log(
+              'sub.api.ak.com: ',
+              localStorage.getItem('sub.api.ak.com'),
+            );
+            console.log(
+              'www.akclown.com: ',
+              localStorage.getItem('www.akclown.com'),
+            );
+          });
+
+        document
+          .getElementById('setSessionStorage')
+          .addEventListener('click', async function () {
+            sessionStorage.setItem('www.akclown.com', 'www.akclown.com');
+          });
+
+        document
+          .getElementById('getSessionStorage')
+          .addEventListener('click', async function () {
+            console.log('api.ak.com: ', sessionStorage.getItem('api.ak.com'));
+            console.log(
+              'sub.api.ak.com: ',
+              sessionStorage.getItem('sub.api.ak.com'),
+            );
+            console.log(
+              'www.akclown.com: ',
+              sessionStorage.getItem('www.akclown.com'),
+            );
+          });
+      })();
+    </script>
+  </body>
+</html>

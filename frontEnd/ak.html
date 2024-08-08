@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ak</title>
+    <script src="./axios.js"></script>
+  </head>
+  <body>
+    <h1>域名为ak.com</h1>
+    <button id="hello">打招呼</button>
+    <button id="setCookie">设置cookie</button>
+    <button id="getCookie">获取cookie</button>
+    <button id="clearCookie">清除cookie</button>
+    <script>
+      (async function () {
+        document
+          .getElementById("hello")
+          .addEventListener("click", async function () {
+            const res = await axios.get("https://api.ak.com:3000/hello", {
+              withCredentials: true,
+            });
+            console.log("hello: ", res);
+          });
+        document
+          .getElementById("getCookie")
+          .addEventListener("click", async function () {
+            const res = await axios.get("https://api.ak.com:3000/get-cookie", {
+              withCredentials: true,
+            });
+            console.log("getCookie: ", res);
+          });
+
+        document
+          .getElementById("setCookie")
+          .addEventListener("click", async function () {
+            const res = await axios.post(
+              "https://api.ak.com:3000/set-cookie",
+              undefined,
+              {
+                withCredentials: true,
+              }
+            );
+          });
+
+        document
+          .getElementById("clearCookie")
+          .addEventListener("click", async function () {
+            const res = await axios.post("http://api.ak.com:3000/clear-cookie");
+            console.log("clearCookie: ", res);
+          });
+      })();
+    </script>
+  </body>
+</html>

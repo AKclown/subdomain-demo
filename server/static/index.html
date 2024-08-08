@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nestJs</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.7.2/axios.js"></script>
+  </head>
+  <body>
+    <h1>与服务器同域名和同端口</h1>
+    <button id="hello">打招呼</button>
+    <button id="setCookie">设置cookie</button>
+    <button id="getCookie">获取cookie</button>
+    <button id="clearCookie">清除cookie</button>
+    <script>
+      (async function () {
+        document
+          .getElementById('hello')
+          .addEventListener('click', async function () {
+            const res = await axios.get('http://sub.api.ak.com:3000/hello', {
+              withCredentials: true,
+            });
+          });
+        document
+          .getElementById('getCookie')
+          .addEventListener('click', async function () {
+            const res = await axios.get('http://api.ak.com:3000/get-cookie');
+          });
+
+        document
+          .getElementById('setCookie')
+          .addEventListener('click', async function () {
+            const res = await axios.post('http://api.ak.com:3000/set-cookie');
+            console.log('setCookie: ', res);
+          });
+
+        document
+          .getElementById('clearCookie')
+          .addEventListener('click', async function () {
+            const res = await axios.post('http://api.ak.com:3000/clear-cookie');
+            console.log('clearCookie: ', res);
+          });
+      })();
+    </script>
+  </body>
+</html>
